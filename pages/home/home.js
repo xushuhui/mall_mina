@@ -10,24 +10,23 @@ Page({
   },
 
 
-  onLoad: function (options) {
-    Theme.getHomeLocationA(data=>{
-      this.setData({
-        topTheme:data[0]
-      })
+  onLoad (options) {
+    let themeA = Theme.getHomeLocationA()
+    this.setData({
+      topTheme:themeA[0]
     })
   },
 
-  onPullDownRefresh: function () {
+   onPullDownRefresh () {
 
   },
 
-  onReachBottom: function () {
+  onReachBottom () {
 
   },
 
 
-  onShareAppMessage: function () {
+  onShareAppMessage () {
 
   }
 })
