@@ -1,14 +1,12 @@
 import { Http } from "../utils/http"
 
-class Banner
-{
-    static async getHomeLocationB(){
+class Category{
+    static async getHomeLocationC(){
         return await Http.request({
             url:`categroy/grid/all`
         })
     }
 }
-
 export {
-    Banner
+    Category
 }

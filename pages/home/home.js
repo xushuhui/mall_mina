@@ -1,32 +1,40 @@
 // pages/home.js
-import{Theme} from "../../model/theme"
+import { Theme } from "../../model/theme"
+import { Banner } from "../../model/banner"
+import { Category } from "../../model/category"
 Page({
 
-  /**
-   * 页面的初始数据
-   */
   data: {
-    topTheme:null
+    themeA: null,
+    bannerB: null,
+    grid: []
   },
 
 
-  onLoad (options) {
-    let themeA = Theme.getHomeLocationA()
+  onLoad(options) {
+    this.initAllData()
+  },
+  async initAllData() {
+    const themeA = await Theme.getHomeLocationA()
+    const bannerB = await Banner.getHomeLocationB()
+    const grid = await Category.getHomeLocationC()
     this.setData({
-      topTheme:themeA[0]
+      themeA: themeA[0],
+      bannerB,
+      grid
     })
   },
 
-   onPullDownRefresh () {
+  onPullDownRefresh() {
 
   },
 
-  onReachBottom () {
+  onReachBottom() {
 
   },
 
 
-  onShareAppMessage () {
+  onShareAppMessage() {
 
   }
 })
