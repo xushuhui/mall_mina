@@ -22,9 +22,9 @@ class Theme {
   async getHomeLocationE() {
     return this.themes.find(t => t.name === Theme.locationE)
   }
-  // async getHomeLocationF() {
-  //   return themes.find(t => t.name === Theme.locationF)
-  // }
+  async getHomeLocationF() {
+    return themes.find(t => t.name === Theme.locationF)
+  }
   // async getHomeLocationH() {
   //   return themes.find(t => t.name === Theme.locationH)
   // }

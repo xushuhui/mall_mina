@@ -14,5 +14,5 @@
   <image class="acvivity" src="{{activityD.entrance_img}}"></image>
   <s-spu-scroll theme="{{themeE}}" spu-list="{{themeESpu}}" wx:if="{{themeE.online}}"></s-spu-scroll>
 
-
+<image src="{{themeF.entrance_img}}" class="quality"></image>
 </view>
