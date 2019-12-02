@@ -1,5 +1,6 @@
 /* pages/home.wxss */
-.top-theme{
+
+.top-theme {
   width: 100%;
-  height: 260rpx
+  height: 260rpx;
 }

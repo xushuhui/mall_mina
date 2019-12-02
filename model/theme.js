@@ -1,4 +1,6 @@
-import { Http } from "../utils/http";
+import {
+  Http
+} from "../utils/http";
 class Theme {
   static locationA = 't-1'
   static locationE = 't-2'
@@ -15,10 +17,10 @@ class Theme {
     })
   }
   async getHomeLocationA() {
-    return themes.find(t => t.name === Theme.locationA)
+    return this.themes.find(t => t.name === Theme.locationA)
   }
   async getHomeLocationE() {
-    return themes.find(t => t.name === Theme.locationE)
+    return this.themes.find(t => t.name === Theme.locationE)
   }
   // async getHomeLocationF() {
   //   return themes.find(t => t.name === Theme.locationF)
@@ -26,11 +28,11 @@ class Theme {
   // async getHomeLocationH() {
   //   return themes.find(t => t.name === Theme.locationH)
   // }
-  static  getHomeLocationESpu() {
+  static getHomeLocationESpu() {
     return this.getHomeLocationESpu(Theme.locationE)
   }
-  static  getThemeSpuByName(name) {
-    const theme =  Http.request({
+  static getThemeSpuByName(name) {
+    const theme = Http.request({
       url: `theme/name/${name}/with_spu`
     })
   }

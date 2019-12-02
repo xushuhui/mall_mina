@@ -1,7 +1,6 @@
 {
   "pages": [
     "pages/home/home"
-   
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -12,7 +11,8 @@
   "style": "v2",
   "sitemapLocation": "sitemap.json",
   "usingCompoents": {
-    "l-grid":"/miniprogram_npm/lin-ui/grid/index",
-    "l-grid-item":"/miniprogram_npm/lin-ui/grid-item/index"
+    "l-grid": "/miniprogram_npm/lin-ui/grid/index",
+    "l-grid-item": "/miniprogram_npm/lin-ui/grid-item/index",
+    "l-price": "/miniprogram_npm/lin-ui/price/index"
   }
 }

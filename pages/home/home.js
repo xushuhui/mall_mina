@@ -1,13 +1,21 @@
 // pages/home.js
-import { Theme } from "../../model/theme"
-import { Banner } from "../../model/banner"
-import { Category } from "../../model/category"
-import { Activity } from "../../model/activity"
+import {
+  Theme
+} from "../../model/theme"
+import {
+  Banner
+} from "../../model/banner"
+import {
+  Category
+} from "../../model/category"
+import {
+  Activity
+} from "../../model/activity"
 Page({
   data: {
     themeA: null,
     themeE: null,
-    themeESpu:[],
+    themeESpu: [],
     themeF: null,
     themeH: null,
     bannerB: null,
