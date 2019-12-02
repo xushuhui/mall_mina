@@ -4,16 +4,36 @@ class Theme {
   static locationE = 't-2'
   static locationF = 't-3'
   static locationH = 't-4'
-  static async getThemes() {
+  themes = []
+  async getThemes() {
     const names = `${Theme.locationA},${Theme.locationE},${Theme.locationF},${Theme.locationH}`
-    return await Http.request({
+    this.themes = await Http.request({
       url: `theme/by/names`,
       data: {
         names: names,
       }
     })
   }
-
+  async getHomeLocationA() {
+    return themes.find(t => t.name === Theme.locationA)
+  }
+  async getHomeLocationE() {
+    return themes.find(t => t.name === Theme.locationE)
+  }
+  // async getHomeLocationF() {
+  //   return themes.find(t => t.name === Theme.locationF)
+  // }
+  // async getHomeLocationH() {
+  //   return themes.find(t => t.name === Theme.locationH)
+  // }
+  static  getHomeLocationESpu() {
+    return this.getHomeLocationESpu(Theme.locationE)
+  }
+  static  getThemeSpuByName(name) {
+    const theme =  Http.request({
+      url: `theme/name/${name}/with_spu`
+    })
+  }
 }
 
 export {
