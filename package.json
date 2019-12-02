@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/xushuhui/mall_mina/issues"
   },
-  "homepage": "https://github.com/xushuhui/mall_mina#readme"
+  "homepage": "https://github.com/xushuhui/mall_mina#readme",
+  "dependencies": {
+    "lin-ui": "^0.6.12"
+  }
 }

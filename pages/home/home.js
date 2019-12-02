@@ -2,12 +2,14 @@
 import { Theme } from "../../model/theme"
 import { Banner } from "../../model/banner"
 import { Category } from "../../model/category"
+import { Activity } from "../../model/activity"
 Page({
 
   data: {
     themeA: null,
     bannerB: null,
-    grid: []
+    grid: [],
+    activityD:null
   },
 
 
@@ -15,13 +17,22 @@ Page({
     this.initAllData()
   },
   async initAllData() {
-    const themeA = await Theme.getHomeLocationA()
+    const themes = await Theme.getThemes()
+    const themeA = themes.find(t=>t.name==='t-1')
+    const themeE = themes.find(t=>t.name==='t-2')
+    const themeF = themes.find(t=>t.name==='t-3')
+    const themeH = themes.find(t=>t.name==='t-4')
     const bannerB = await Banner.getHomeLocationB()
     const grid = await Category.getHomeLocationC()
+    const activityD= await Activity.getHomeLocationD()
     this.setData({
-      themeA: themeA[0],
+      themeA,
       bannerB,
-      grid
+      grid,
+      activityD,
+      themeE,
+      themeF,
+      themeH,
     })
   },
 

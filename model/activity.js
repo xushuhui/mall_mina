@@ -7,3 +7,6 @@ class Activity{
         })
     }
 }
+export{
+    Activity
+}
