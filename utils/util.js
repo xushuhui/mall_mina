@@ -1,5 +1,5 @@
-const promisic = function (func) {
-  return function (params = {}) {
+const promisic = function(func) {
+  return function(params = {}) {
     return new Promise((resolve, reject) => {
       const args = Object.assign(params, {
         success: (res) => {
@@ -13,6 +13,6 @@ const promisic = function (func) {
     });
   };
 };
-export  {
+export {
   promisic
 }

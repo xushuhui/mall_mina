@@ -10,17 +10,17 @@ class Http {
     data,
     method = 'GET'
   }) {
-    const res =  await promisic(wx.request)({
+    const res = await promisic(wx.request)({
       url: `${config.apiBaseUrl}${url}`,
       data,
       method,
       header: {
         appKey: config.appKey
       }
-    
+
     })
     return res.data
-    
+
   }
 
 }

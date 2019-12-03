@@ -11,7 +11,7 @@ class Theme {
     const names = `${Theme.locationA},${Theme.locationE},${Theme.locationF},${Theme.locationH}`
     this.themes = await Http.request({
       //FIXME::url: `theme/by/names`,
-      url:`themes.json`,
+      url: `themes.json`,
       data: {
         names
       }

@@ -26,10 +26,13 @@ Page({
   async onLoad(options) {
     this.initAllData()
   },
+  async initBottomSpuList() {
+
+  },
   async initAllData() {
     const themeModel = new Theme()
     await themeModel.getThemes()
-   
+
     const themeA = themeModel.getHomeLocationA()
     const themeE = themeModel.getHomeLocationE()
     let themeESpu = []
