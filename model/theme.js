@@ -12,22 +12,22 @@ class Theme {
     this.themes = await Http.request({
       url: `theme/by/names`,
       data: {
-        names: names,
+        names
       }
     })
   }
-  async getHomeLocationA() {
+  getHomeLocationA() {
     return this.themes.find(t => t.name === Theme.locationA)
   }
-  async getHomeLocationE() {
+  getHomeLocationE() {
     return this.themes.find(t => t.name === Theme.locationE)
   }
-  async getHomeLocationF() {
-    return themes.find(t => t.name === Theme.locationF)
+  getHomeLocationF() {
+    return this.themes.find(t => t.name === Theme.locationF)
   }
-  // async getHomeLocationH() {
-  //   return themes.find(t => t.name === Theme.locationH)
-  // }
+  getHomeLocationH() {
+    return this.themes.find(t => t.name === Theme.locationH)
+  }
   static getHomeLocationESpu() {
     return this.getHomeLocationESpu(Theme.locationE)
   }

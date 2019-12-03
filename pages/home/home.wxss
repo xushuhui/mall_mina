@@ -25,3 +25,9 @@
   height: 880rpx;
   display: flex;
 }
+.fashion{
+   width: 100%;
+  height: 840rpx;
+  display: flex;
+  margin-top: 20rpx;
+}

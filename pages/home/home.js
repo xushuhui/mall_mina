@@ -20,7 +20,8 @@ Page({
     themeH: null,
     bannerB: null,
     grid: [],
-    activityD: null
+    activityD: null,
+    bannerG: null
   },
   async onLoad(options) {
     this.initAllData()
@@ -28,8 +29,8 @@ Page({
   async initAllData() {
     const themeModel = new Theme()
     await themeModel.getThemes()
-    const themeA = await themeModel.getHomeLocationA()
-    const themeE = await themeModel.getHomeLocationE()
+    const themeA = themeModel.getHomeLocationA()
+    const themeE = themeModel.getHomeLocationE()
     let themeESpu = []
     if (themeE.online) {
       let data = await Theme.getHomeLocationESpu()
@@ -37,21 +38,24 @@ Page({
         themeESpu = data.spu_list.slice(0, 8)
       }
     }
-    const themeF = await themeModel.getHomeLocationF()
-    const themeH = await themeModel.getHomeLocationH()
+    const themeF = themeModel.getHomeLocationF()
+
     const bannerB = await Banner.getHomeLocationB()
     const grid = await Category.getHomeLocationC()
     const activityD = await Activity.getHomeLocationD()
+    const bannerG = await Banner.getHomeLocationG()
+    const themeH = themeModel.getHomeLocationH()
     this.setData({
       themeA,
       themeE,
       themeESpu,
       themeF,
-      themeH,
+
       bannerB,
       grid,
       activityD,
-
+      bannerG,
+      themeH,
     })
   },
 
