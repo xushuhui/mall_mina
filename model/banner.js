@@ -7,12 +7,14 @@ class Banner {
   static locationG = 'b-2'
   static async getHomeLocationB() {
     return await Http.request({
-      url: `banner/name/${Banner.locationB}`
+      //FIXME::url: `banner/name/${Banner.locationB}`
+      url: `banner.json`
     })
   }
-  static async locationG() {
+  static async getHomeLocationG() {
     return await Http.request({
-      url: `banner/name/${Banner.locationG}`
+      //FIXME::url: `banner/name/${Banner.locationG}`
+      url: `banner2.json`
     })
   }
 }

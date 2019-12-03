@@ -10,11 +10,13 @@ class Theme {
   async getThemes() {
     const names = `${Theme.locationA},${Theme.locationE},${Theme.locationF},${Theme.locationH}`
     this.themes = await Http.request({
-      url: `theme/by/names`,
+      //FIXME::url: `theme/by/names`,
+      url:`themes.json`,
       data: {
         names
       }
     })
+    console.log(this.themes.data);
   }
   getHomeLocationA() {
     return this.themes.find(t => t.name === Theme.locationA)
@@ -29,11 +31,12 @@ class Theme {
     return this.themes.find(t => t.name === Theme.locationH)
   }
   static getHomeLocationESpu() {
-    return this.getHomeLocationESpu(Theme.locationE)
+    return this.getThemeSpuByName(Theme.locationE)
   }
   static getThemeSpuByName(name) {
     const theme = Http.request({
-      url: `theme/name/${name}/with_spu`
+      //FIXME::url: `theme/name/${name}/with_spu`
+      url: `spu.json`
     })
   }
 }

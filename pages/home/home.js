@@ -29,6 +29,7 @@ Page({
   async initAllData() {
     const themeModel = new Theme()
     await themeModel.getThemes()
+   
     const themeA = themeModel.getHomeLocationA()
     const themeE = themeModel.getHomeLocationE()
     let themeESpu = []

@@ -1,6 +1,6 @@
 const config = {
   appKey: '',
-  apiBaseUrl: ''
+  apiBaseUrl: 'http://localhost:81/'
 }
 export {
   config

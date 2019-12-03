@@ -3,7 +3,8 @@ import { Http } from "../utils/http"
 class Category{
     static async getHomeLocationC(){
         return await Http.request({
-            url:`categroy/grid/all`
+          //FIXME::url:`categroy/grid/all`
+          url:`category.json`
         })
     }
 }

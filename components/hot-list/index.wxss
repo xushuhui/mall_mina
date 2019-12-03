@@ -1,5 +1,5 @@
 /* components/hot-list/index.wxss */
-
+@import "../../wxss/common.wxss";
 .container {
   display: flex;
   flex-direction: column;
