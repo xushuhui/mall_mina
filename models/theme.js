@@ -16,7 +16,6 @@ class Theme {
         names
       }
     })
-    console.log(this.themes.data);
   }
   getHomeLocationA() {
     return this.themes.find(t => t.name === Theme.locationA)
@@ -31,7 +30,7 @@ class Theme {
     return this.themes.find(t => t.name === Theme.locationH)
   }
   static getHomeLocationESpu() {
-    return this.getThemeSpuByName(Theme.locationE)
+    return Theme.getThemeSpuByName(Theme.locationE)
   }
   static getThemeSpuByName(name) {
     const theme = Http.request({

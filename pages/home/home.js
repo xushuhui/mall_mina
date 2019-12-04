@@ -1,16 +1,17 @@
 // pages/home.js
 import {
   Theme
-} from "../../model/theme"
+} from "../../models/theme"
 import {
   Banner
-} from "../../model/banner"
+} from "../../models/banner"
 import {
   Category
-} from "../../model/category"
+} from "../../models/category"
 import {
   Activity
-} from "../../model/activity"
+} from "../../models/activity"
+import { SpuPaging } from "../../models/spu-paging"
 Page({
   data: {
     themeA: null,
@@ -25,9 +26,14 @@ Page({
   },
   async onLoad(options) {
     this.initAllData()
+    this.initBottomSpuList()
   },
   async initBottomSpuList() {
-
+    const paging =  SpuPaging.getLatestPaging()
+    const data = paging.getMoreData()
+    if(!data){
+      return
+    }
   },
   async initAllData() {
     const themeModel = new Theme()
