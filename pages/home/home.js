@@ -45,7 +45,8 @@ Page({
     if (themeE.online) {
       let data = await Theme.getHomeLocationESpu()
       if (data) {
-        themeESpu = data.spu_list.slice(0, 8)
+        console.log(data.spu_list)
+        themeESpu = data.spu_list.slice(0, 6)
       }
     }
     const themeF = themeModel.getHomeLocationF()

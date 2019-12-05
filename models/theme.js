@@ -33,9 +33,9 @@ class Theme {
     return Theme.getThemeSpuByName(Theme.locationE)
   }
   static getThemeSpuByName(name) {
-    const theme = Http.request({
+    return Http.request({
       //FIXME::url: `theme/name/${name}/with_spu`
-      url: `spu.json`
+      url: `theme.json`
     })
   }
 }
