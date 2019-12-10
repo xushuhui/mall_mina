@@ -1,6 +1,7 @@
 {
   "pages": [
-    "pages/home/home"
+    "pages/home/home",
+    "pages/detail/detail"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -16,6 +17,6 @@
     "l-price": "/miniprogram_npm/lin-ui/price/index",
     "l-tag": "/miniprogram_npm/lin-ui/tag/index",
     "l-loadmore": "/miniprogram_npm/lin-ui/loadmore/index",
-    "s-spu-preview": "compoents/spu-preview/index"
+    "s-spu-preview": "components/spu-preview/index"
   }
 }

@@ -31,10 +31,11 @@ Page({
   },
   async initBottomSpuList() {
     const paging = spuPaging.getLatestPaging()
-    const data = paging.getMoreData()
+    const data = await paging.getMoreData()
     if (!data) {
       return
     }
+    wx.lin.renderWaterFlow(data.items)
   },
   async initAllData() {
     const themeModel = new Theme()
@@ -44,9 +45,9 @@ Page({
     const themeE = themeModel.getHomeLocationE()
     let themeESpu = []
     if (themeE.online) {
-      let data = await Theme.getHomeLocationESpu()
+      const data = await Theme.getHomeLocationESpu()
       if (data) {
-        console.log(data.spu_list)
+
         themeESpu = data.spu_list.slice(0, 6)
       }
     }
@@ -81,7 +82,7 @@ Page({
       return
     }
     wx.lin.rederWaterFlow(data.items)
-    if(!data.moreData){
+    if (!data.moreData) {
       loadingType: "end"
     }
   },
