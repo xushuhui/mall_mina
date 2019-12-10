@@ -11,7 +11,7 @@ import {
 import {
   Activity
 } from "../../models/activity"
-import { SpuPaging } from "../../models/spu-paging"
+import { spuPaging } from "../../models/spu-paging"
 Page({
   data: {
     themeA: null,
@@ -22,16 +22,17 @@ Page({
     bannerB: null,
     grid: [],
     activityD: null,
-    bannerG: null
+    bannerG: null,
+    loadingType: "loading"
   },
   async onLoad(options) {
     this.initAllData()
     this.initBottomSpuList()
   },
   async initBottomSpuList() {
-    const paging =  SpuPaging.getLatestPaging()
+    const paging = spuPaging.getLatestPaging()
     const data = paging.getMoreData()
-    if(!data){
+    if (!data) {
       return
     }
   },
@@ -74,8 +75,15 @@ Page({
 
   },
 
-  onReachBottom() {
-
+  onReachBottom: async function () {
+    const data = await this.data.spuPaging.getMoreData()
+    if (!data) {
+      return
+    }
+    wx.lin.rederWaterFlow(data.items)
+    if(!data.moreData){
+      loadingType: "end"
+    }
   },
 
 
