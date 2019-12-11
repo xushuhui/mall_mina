@@ -13,7 +13,14 @@ Component({
   data: {
 
   },
-
+  observers:{
+    'spu':(spu)=>{
+      if(!spu){
+        return
+      }
+      
+    }
+  },
   /**
    * 组件的方法列表
    */
