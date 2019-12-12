@@ -9,7 +9,7 @@ class Matrix{
     get colsNum(){
         return this.m[0].length
     }
-    forEach(callback){
+    each(callback){
         for (let j = 0; j < this.colsNum; j++) {
            for (let i = 0; i < this.rowsNum; i++) {
                const element =this.m[i][j];
@@ -24,7 +24,6 @@ class Matrix{
             desArr[j] = []
             for (let i = 0; i < this.rowsNum; i++) {
                 desArr[j][i] =this.m[i][j];
-               
             }
              
          }
