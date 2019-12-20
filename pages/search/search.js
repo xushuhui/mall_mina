@@ -1,5 +1,7 @@
 import { HistoryKeyword } from "../../models/history-keyword"
 import { Tag } from "../../models/tag"
+import { Search } from "../../models/search"
+import { showToast } from "../../utils/ui"
 const history = new HistoryKeyword()
 // pages/search/search.js
 Page({
@@ -22,11 +24,40 @@ Page({
       hotTags
     })
   },
-  onSearch(event) {
-    const keyword = event.detail.value
+  async onSearch(event) {
+    this.setData({
+      search: true
+    })
+    const keyword = event.detail.value || event.detail.name
+    if (!keyword) {
+      showToast("请输入关键字")
+      return
+    }
     history.save(keyword)
     this.setData({
       historyTags: history.get()
+    })
+    const paging = Search.search(keyword)
+    wx.lin.showLoading({
+      color: "#157658",
+      type: "flush",
+      fullScreen: true
+    })
+    const data = await paging.getMoreData()
+    wx.lin.hideLoading()
+    this.bindItems(data)
+  },
+  bindItems(data) {
+    if (data.accumulator.length !== 0) {
+      this.setData({
+        items: data.accumulator
+      })
+    }
+  },
+  onCancel(event) {
+    this.setData({
+      search: false,
+      items: []
     })
   },
   onDeleteHistory(event) {

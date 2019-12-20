@@ -1,9 +1,10 @@
 <view class="header">
-    <l-search-bar bind:linconfirm="onSearch" placeholder="输入商品名称" maxlength="9" l-class="input" bg-color="#f1f1f1"></l-search-bar>
+    <l-search-bar bind:linconfirm="onSearch" bind:lincancel="onCancel" placeholder="输入商品名称"
+     maxlength="9" l-class="input" bg-color="#f1f1f1"></l-search-bar>
 </view>
 <view class="container">
-    <view>
-        <view  class="history-container" wx:if="{{historyTags.length !== 0}}">
+    <view wx:if="{{!search}}">
+        <view class="history-container" wx:if="{{historyTags.length !== 0}}">
             <view class="history-title">
                 <view class="slide"></view>
                 <text>历史搜索</text>
@@ -13,23 +14,30 @@
                 </view>
             </view>
             <view class="history-tags">
-            <block wx:for="{{historyTags}}" wx:key="{{index}}">
-                <l-tag l-class="tag" name="{{item}}">{{item}}</l-tag>
-            </block>
+                <block wx:for="{{historyTags}}" wx:key="{{index}}">
+                    <l-tag bind:lintap="onSearch"  l-class="tag" name="{{item}}">{{item}}</l-tag>
+                </block>
             </view>
         </view>
-          <view  class="history-container" >
+        <view class="history-container">
             <view class="history-title">
                 <view class="slide"></view>
                 <text>热门搜索</text>
                 <view style="flex:1"></view>
-                
             </view>
             <view class="history-tags">
-            <block wx:for="{{hotTags}}" wx:key="{{index}}">
-                <l-tag l-class="tag" select="{{item.highlight}}" name="{{item.title}}" l-select-class="tag-selected">{{item.title}}</l-tag>
-            </block>
+                <block wx:for="{{hotTags}}" wx:key="{{index}}">
+                    <l-tag bind:lintap="onSearch" l-class="tag" select="{{item.highlight}}" name="{{item.title}}" l-select-class="tag-selected">
+                        {{item.title}}
+                    </l-tag>
+                </block>
             </view>
         </view>
     </view>
+    <view wx:else>
+        <block wx:for="{{items}}">
+            <s-spu-preview-r data="{{items}}"></s-spu-preview-r>
+        </block>
+    </view>
+    <l-loading ></l-loading>
 </view>
