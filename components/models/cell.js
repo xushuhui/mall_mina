@@ -1,9 +1,13 @@
-class Cell{
+import { CellStatus } from "../../core/enum"
+
+class Cell {
     title
     id
-    constuctor(spec){
+    status = CellStatus.WAITING
+    constuctor(spec) {
+
         this.title = spec.value
-        this.id =spec.value_id
+        this.id = spec.value_id
     }
 }
 export {

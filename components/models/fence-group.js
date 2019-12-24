@@ -18,6 +18,7 @@ class FenceGroup{
             fence.init()
             fences.push(fence)
         })
+        
         this.fences = fences
     }
     initFences1(){

@@ -3,6 +3,7 @@ import { combination } from "../../utils/util"
 class SkuCode{
     code
     spuId
+    totalSegments = []
     constructor(code){
         this.code = code
         this._splitToSegments()
@@ -17,7 +18,7 @@ class SkuCode{
             const newSegments = segments.map(segs=>{
                 return segs.join('#')
             })
-            
+            this.totalSegments = this.totalSegments.concat(newSegments)
         }
     }
 }
