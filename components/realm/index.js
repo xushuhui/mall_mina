@@ -14,16 +14,16 @@ Component({
    * 组件的初始数据
    */
   data: {
-    judger:Object
+    judger: Object
   },
-  lifetimes:{
-    attached(){
+  lifetimes: {
+    attached() {
 
     },
   },
-  observers:{
-    'spu':(spu)=>{
-      if(!spu){
+  observers: {
+    'spu': (spu) => {
+      if (!spu) {
         return
       }
       const fenceGroup = new FenceGroup(spu)
@@ -37,16 +37,18 @@ Component({
    * 组件的方法列表
    */
   methods: {
-    bindInitData(fenceGroup){
+    bindInitData(fenceGroup) {
       this.setData({
-        fences:fenceGroup.fences
+        fences: fenceGroup.fences
       })
     },
-    onCellTap(event){
+    onCellTap(event) {
       const cell = event.detail.cell
-      this.data.judger.judge(cell)
+      const x = event.detail.x
+      const y = event.detail.y
+      this.data.judger.judge(cell,x,y)
       this.setData({
-        fences:this.data.judger.fenceGroup.fences
+        fences: this.data.judger.fenceGroup.fences
       })
     }
   }
