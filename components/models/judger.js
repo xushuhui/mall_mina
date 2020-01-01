@@ -14,6 +14,11 @@ class Judger {
     }
     _initSkuPending() {
         this.skuPending = new SkuPending()
+        const defaultSku = this.fenceGroup.getDefaultSku()
+        if(!defaultSku){
+            return
+        }
+        
     }
     _initPathDict() {
         this.fenceGroup.spu.sku_list.forEach(s => {

@@ -3,6 +3,11 @@ class SkuPending {
     constructor() {
 
     }
+    init(sku){
+        sku.specs.forEach(s=>{
+            
+        })
+    }
     insertCell(cell, x) {
         this.pending[x] = cell
     }

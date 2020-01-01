@@ -9,6 +9,13 @@ class FenceGroup{
         this.spu = spu
         this.skuList =spu.sku_list
     }
+    getDefaultSku(){
+        const defaultSkuId = this.spu.default_sku_id
+        if(!defaultSkuId){
+            return
+        }
+        return this.skuList.find(s=>s.id === defaultSkuId)
+    }
     initFences(){
         const matrix = this._createMatrix(this.skuList)
         const fences = []
