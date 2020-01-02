@@ -15,10 +15,17 @@ class Judger {
     _initSkuPending() {
         this.skuPending = new SkuPending()
         const defaultSku = this.fenceGroup.getDefaultSku()
-        if(!defaultSku){
+        if (!defaultSku) {
             return
         }
-        
+        this.skuPending.init(defaultSku)
+        this._initSelectedCell()
+        this.judge(null, null, null, true)
+    }
+    _initSelectedCell() {
+        this.skuPending.pending.forEach(cell => {
+            this.fenceGroup.setCellStatusById(cell.id, CellStatus.SELECTED)
+        })
     }
     _initPathDict() {
         this.fenceGroup.spu.sku_list.forEach(s => {
@@ -26,22 +33,24 @@ class Judger {
             this.pathDict = this.pathDict.concat(skuCode.totalSegments)
         })
     }
-    judge(cell, x, y) {
-        this._changeCurrentCellStatus(cell, x, y)
+    judge(cell, x, y, isInit = false) {
+        if (!isInit) {
+            this._changeCurrentCellStatus(cell, x, y)
+        }
         this.fenceGroup.eachCell((cell, x, y) => {
             const path = this._findPotentialPath(cell, x, y)
-            if(!path){
+            if (!path) {
                 return
             }
             const isIn = this._isInDict(path)
-            if(isIn){
-                this.fenceGroup.fences[x].cells[y].status = CellStatus.WAITING
-            }else{
-                this.fenceGroup.fences[x].cells[y].status = CellStatus.FORBIDDEN
+            if (isIn) {
+                this.fenceGroup.setCellStatusByXY(x, y, CellStatus.WAITING)
+            } else {
+                this.fenceGroup.setCellStatusByXY(x, y, CellStatus.FORBIDDEN)
             }
         })
     }
-    _isInDict(path){
+    _isInDict(path) {
         return this.pathDict.includes(path)
     }
     _findPotentialPath(cell, x, y) {
@@ -49,7 +58,7 @@ class Judger {
         for (let i = 0; i < this.fenceGroup.fences.length; i++) {
             const selected = this.skuPending.findSelectedCellByX(i)
             if (x === i) {
-                if(this.skuPending.isSelected(cell,x)){
+                if (this.skuPending.isSelected(cell, x)) {
                     return
                 }
                 const cellCode = this._getCellCode(cell.spec)
@@ -69,11 +78,11 @@ class Judger {
     }
     _changeCurrentCellStatus(cell, x, y) {
         if (cell.status === CellStatus.WAITING) {
-            this.fenceGroup.fences[x].cells[y].status = CellStatus.SELECTED
+            this.fenceGroup.setCellStatusByXY(x, y, CellStatus.SELECTED)
             this.skuPending.insertCell(cell, x)
         }
         if (cell.status === CellStatus.SELECTED) {
-            this.fenceGroup.fences[x].cells[y].status = CellStatus.WAITING
+            this.fenceGroup.setCellStatusByXY(x, y, CellStatus.WAITING)
             this.skuPending.removeCell(x)
         }
     }

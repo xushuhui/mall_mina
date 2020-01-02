@@ -16,6 +16,16 @@ class FenceGroup{
         }
         return this.skuList.find(s=>s.id === defaultSkuId)
     }
+    setCellStatusById(cellId,status){
+        this.eachCell((cell)=>{
+            if(cell.id === cellId){
+                cell.status = status
+            }
+        })
+    }
+    setCellStatusByXY(x,y,status){
+        this.fences[x].cell[y].status = status
+    }
     initFences(){
         const matrix = this._createMatrix(this.skuList)
         const fences = []
