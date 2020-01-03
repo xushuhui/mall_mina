@@ -1,5 +1,6 @@
 import { FenceGroup } from "../models/fence-group"
 import { Judger } from "../models/judger"
+import { Spu } from "../../models/spu"
 
 // components/realm/index.js
 Component({
@@ -16,9 +17,9 @@ Component({
   data: {
     judger: Object,
     previewImg: String,
-    title:String,
-    price:null,
-    discountPrice:null
+    title: String,
+    price: null,
+    discountPrice: null
   },
   lifetimes: {
     attached() {
@@ -29,6 +30,13 @@ Component({
     'spu': (spu) => {
       if (!spu) {
         return
+      }
+      if (Spu.isNoSpec(spu)) {
+        this.setData({
+          noSpec: true,
+          
+        })
+        this.bindSkuData(spu.sku_list[0])
       }
       const fenceGroup = new FenceGroup(spu)
       fenceGroup.initFences()
@@ -51,22 +59,24 @@ Component({
       const spu = this.properties.spu
       this.setData({
         previewImg: spu.img,
-        title:spu.title,
-        price:spu.price,
-        discountPrice:spu.discount_price
+        title: spu.title,
+        price: spu.price,
+        discountPrice: spu.discount_price
       })
     },
     bindSkuData(sku) {
       this.setData({
         previewImg: sku.img,
-        title:sku.title,
-        price:sku.price,
-        discountPrice:sku.discount_price
+        title: sku.title,
+        price: sku.price,
+        discountPrice: sku.discount_price,
+        stock: sku.stock
       })
     },
     bindInitData(fenceGroup) {
       this.setData({
-        fences: fenceGroup.fences
+        fences: fenceGroup.fences,
+        isSkuIntact:this.data.judger.isSkuIntact()
       })
     },
     onCellTap(event) {

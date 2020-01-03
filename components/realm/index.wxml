@@ -8,6 +8,8 @@
                 <view class="price-row">
                     <l-price value="{{p.mainPrice(price,discountPrice).price}}" color="#157658" value-size="28" unit-size="20" autofix></l-price>
                     <l-price wx:if="{{p.slashedPrice(price,discountPrice).display}}"  value="{{p.slashedPrice(price,discountPrice).price}}" color="#999" value-size="26" l-class="discount-price" deleted></l-price>
+                    <view class="stock" wx:if="{{stock && stock>= 10}}">库存： {{stock}} 件</view>
+                    <view class="stock-pinch" wx:if="{{stock && stock < 10 && stock != 0}}">仅剩： {{stock}} 件</view>
                 </view>
                 <view class="sku-pending">
                     <text >请选择：</text>
