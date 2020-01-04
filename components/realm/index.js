@@ -55,13 +55,20 @@ Component({
    * 组件的方法列表
    */
   methods: {
+    bindInitData(fenceGroup) {
+      this.setData({
+        fences: fenceGroup.fences,
+        skuIntact:this.data.judger.isSkuIntact()
+      })
+    },
     bindSpuData() {
       const spu = this.properties.spu
       this.setData({
         previewImg: spu.img,
         title: spu.title,
         price: spu.price,
-        discountPrice: spu.discount_price
+        discountPrice: spu.discount_price,
+        skuIntact:this.data.judger.isSkuIntact()
       })
     },
     bindSkuData(sku) {
@@ -70,23 +77,24 @@ Component({
         title: sku.title,
         price: sku.price,
         discountPrice: sku.discount_price,
-        stock: sku.stock
+        stock: sku.stock,
+        skuIntact:this.data.judger.isSkuIntact()
       })
     },
-    bindInitData(fenceGroup) {
+   
+    bindFenceGroupData(fenceGroup){
       this.setData({
-        fences: fenceGroup.fences,
-        isSkuIntact:this.data.judger.isSkuIntact()
+        fences:fenceGroup.fences
       })
     },
     onCellTap(event) {
       const cell = event.detail.cell
       const x = event.detail.x
       const y = event.detail.y
+      const judger = this.data.judger
       this.data.judger.judge(cell, x, y)
-      this.setData({
-        fences: this.data.judger.fenceGroup.fences
-      })
+      this.bindFenceGroupData(judger.fenceGroup)
+    
     }
   }
 })
