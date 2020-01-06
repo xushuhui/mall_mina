@@ -14,8 +14,12 @@ class SkuPending {
         }
     }
     getSkuCode(){
-        const join = new Joiner()
-        
+        const joiner = new Joiner('#')
+        this.pending.forEach(cell=>{
+           const cellCode =  cell.getCellCode()
+           joiner.join(cellCode)
+        })
+        return join.getStr()
     }
     isIntact() {
         if(this.size !== this.pending.length){

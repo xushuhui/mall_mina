@@ -9,6 +9,11 @@ class FenceGroup{
         this.spu = spu
         this.skuList =spu.sku_list
     }
+    getSku(skuCode){
+        const fullSkuCode = this.spu.id+'$'+skuCode
+        const sku = this.spu.sku_list.find(s=>s.code === fullSkuCode)
+        return sku?sku:null
+    }
     getDefaultSku(){
         const defaultSkuId = this.spu.default_sku_id
         if(!defaultSkuId){

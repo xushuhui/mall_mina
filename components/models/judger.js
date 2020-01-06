@@ -90,6 +90,11 @@ class Judger {
             this.skuPending.removeCell(x)
         }
     }
+    getDeterminateSku(){
+        const code = this.skuPending.getSkuCode()
+        return this.fenceGroup.getSku(code)
+
+    }
 }
 export {
     Judger

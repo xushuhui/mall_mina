@@ -1,6 +1,7 @@
 import { FenceGroup } from "../models/fence-group"
 import { Judger } from "../models/judger"
 import { Spu } from "../../models/spu"
+import { Cell } from "../models/cell"
 
 // components/realm/index.js
 Component({
@@ -32,13 +33,25 @@ Component({
         return
       }
       if (Spu.isNoSpec(spu)) {
-        this.setData({
-          noSpec: true,
-          
-        })
-        this.bindSkuData(spu.sku_list[0])
+        this.processNoSpec(spu)
+      } else {
+        this.processHasSpec(spu)
       }
-      const fenceGroup = new FenceGroup(spu)
+
+    }
+  },
+  /**
+   * 组件的方法列表
+   */
+  methods: {
+    processNoSpec(spu) {
+      this.setData({
+        noSpec: true
+      })
+      this.bindSkuData(spu.sku_list[0])
+    },
+    processHasSpec(spu) {
+      const fenceGroup = new FenceGroup()
       fenceGroup.initFences()
       const judger = new Judger(fenceGroup)
       this.data.judger = judger
@@ -46,19 +59,15 @@ Component({
       if (defaultSku) {
         this.bindSkuData(defaultSku)
       } else {
-        this.bindSpuData()
+        this.bindSkuData()
       }
-      this.bindInitData(fenceGroup)
-    }
-  },
-  /**
-   * 组件的方法列表
-   */
-  methods: {
+      this.bindTipData()
+      this.bindFenceGroupData(fenceGroup)
+    },
     bindInitData(fenceGroup) {
       this.setData({
         fences: fenceGroup.fences,
-        skuIntact:this.data.judger.isSkuIntact()
+        skuIntact: this.data.judger.isSkuIntact()
       })
     },
     bindSpuData() {
@@ -68,7 +77,6 @@ Component({
         title: spu.title,
         price: spu.price,
         discountPrice: spu.discount_price,
-        skuIntact:this.data.judger.isSkuIntact()
       })
     },
     bindSkuData(sku) {
@@ -78,23 +86,32 @@ Component({
         price: sku.price,
         discountPrice: sku.discount_price,
         stock: sku.stock,
-        skuIntact:this.data.judger.isSkuIntact()
       })
     },
-   
-    bindFenceGroupData(fenceGroup){
+    bindTipData() {
       this.setData({
-        fences:fenceGroup.fences
+        skuIntact: this.data.judger.isSkuIntact()
+      })
+    },
+    bindFenceGroupData(fenceGroup) {
+      this.setData({
+        fences: fenceGroup.fences
       })
     },
     onCellTap(event) {
-      const cell = event.detail.cell
+      const data = event.detail.cell
       const x = event.detail.x
       const y = event.detail.y
+      const cell = new Cell(data.spec)
       const judger = this.data.judger
-      this.data.judger.judge(cell, x, y)
+      judger.judge(cell, x, y)
+      const skuIntact = judger.isSkuIntact()
+      if(skuIntact){
+        const currentSku = judger.getDeterminateSku()
+        this.bindSkuData(currentSku)
+      }
       this.bindFenceGroupData(judger.fenceGroup)
-    
+
     }
   }
 })
