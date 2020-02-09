@@ -25,7 +25,7 @@
 
 .discount-price{
     margin-left: 20rpx;
-  }
+}
 .sku-pending{
     font-size: 20rpx;
 }

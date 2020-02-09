@@ -9,12 +9,27 @@ class FenceGroup{
         this.spu = spu
         this.skuList =spu.sku_list
     }
+    getSku(skuCode){
+        const fullSkuCode = this.spu.id+'$'+skuCode
+        const sku = this.spu.sku_list.find(s=>s.code === fullSkuCode)
+        return sku?sku:null
+    }
     getDefaultSku(){
         const defaultSkuId = this.spu.default_sku_id
         if(!defaultSkuId){
             return
         }
         return this.skuList.find(s=>s.id === defaultSkuId)
+    }
+    setCellStatusById(cellId,status){
+        this.eachCell((cell)=>{
+            if(cell.id === cellId){
+                cell.status = status
+            }
+        })
+    }
+    setCellStatusByXY(x,y,status){
+        this.fences[x].cell[y].status = status
     }
     initFences(){
         const matrix = this._createMatrix(this.skuList)
