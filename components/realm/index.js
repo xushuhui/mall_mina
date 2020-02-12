@@ -2,6 +2,7 @@ import { FenceGroup } from "../models/fence-group"
 import { Judger } from "../models/judger"
 import { Spu } from "../../models/spu"
 import { Cell } from "../models/cell"
+import { Cart } from "../../models/cart"
 
 // components/realm/index.js
 Component({
@@ -20,7 +21,8 @@ Component({
     previewImg: String,
     title: String,
     price: null,
-    discountPrice: null
+    discountPrice: null,
+    currentSkuCount: Cart.SKU_MIN_COUNT
   },
   lifetimes: {
     attached() {
@@ -49,6 +51,7 @@ Component({
         noSpec: true
       })
       this.bindSkuData(spu.sku_list[0])
+      this.setStockStatus(spu.sku_list[0].stock)
     },
     processHasSpec(spu) {
       const fenceGroup = new FenceGroup()
@@ -58,6 +61,7 @@ Component({
       const defaultSku = fenceGroup.getDefaultSku()
       if (defaultSku) {
         this.bindSkuData(defaultSku)
+        this.setStockStatus(defaultSku.stock)
       } else {
         this.bindSkuData()
       }
@@ -98,6 +102,22 @@ Component({
         fences: fenceGroup.fences
       })
     },
+    setStockStatus(stock) {
+      this.setData({
+        outStock: this.isOutOfStock(stock, this.data.currentSkuCount)
+      })
+    },
+    isOutOfStock(stock, currentCount) {
+      return stock < currentCount
+    },
+    onSelectCount(event) {
+      const currentCount = event.detail.count
+      this.data.currentSkuCount = currentCount
+      if (this.data.judger.isSkuIntact()) {
+        const sku = this.data.judger.getDeterminateSku()
+        this.setStockStatus(sku.stock)
+      }
+    },
     onCellTap(event) {
       const data = event.detail.cell
       const x = event.detail.x
@@ -106,9 +126,10 @@ Component({
       const judger = this.data.judger
       judger.judge(cell, x, y)
       const skuIntact = judger.isSkuIntact()
-      if(skuIntact){
+      if (skuIntact) {
         const currentSku = judger.getDeterminateSku()
         this.bindSkuData(currentSku)
+        this.setStockStatus(currentSku.stock)
       }
       this.bindFenceGroupData(judger.fenceGroup)
 
