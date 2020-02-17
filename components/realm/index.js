@@ -22,6 +22,8 @@ Component({
     title: String,
     price: null,
     discountPrice: null,
+    currentValues: null,
+    missingKeys: null,
     currentSkuCount: Cart.SKU_MIN_COUNT
   },
   lifetimes: {
@@ -39,7 +41,7 @@ Component({
       } else {
         this.processHasSpec(spu)
       }
-
+      this.triggerSpecEvent()
     }
   },
   /**
@@ -74,6 +76,23 @@ Component({
         skuIntact: this.data.judger.isSkuIntact()
       })
     },
+    triggerSpecEvent() {
+      const noSpec = Spu.isNoSpec(this.properties.spu)
+      if (noSpec) {
+        this.triggerSpecEvent('specchange', {
+          noSpec,
+
+        })
+      } else {
+        this.triggerSpecEvent('specchange', {
+          noSpec,
+          skuIntact: this.data.judger.isSkuIntact(),
+          currentValues: this.data.judger.getCurrentValues(),
+          missingKeys: this.data.judger.getMissingKeys()
+        })
+
+      }
+    },
     bindSpuData() {
       const spu = this.properties.spu
       this.setData({
@@ -94,7 +113,9 @@ Component({
     },
     bindTipData() {
       this.setData({
-        skuIntact: this.data.judger.isSkuIntact()
+        skuIntact: this.data.judger.isSkuIntact(),
+        currentValues: this.data.judger.getCurrentValues(),
+        missingKeys: this.data.judger.getMissingKeys()
       })
     },
     bindFenceGroupData(fenceGroup) {
@@ -132,7 +153,7 @@ Component({
         this.setStockStatus(currentSku.stock)
       }
       this.bindFenceGroupData(judger.fenceGroup)
-
+      this.triggerSpecEvent()
     }
   }
 })
