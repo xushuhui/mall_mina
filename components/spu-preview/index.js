@@ -15,12 +15,10 @@ Component({
   },
   observers: {
     data: (data)=>{
-      if(!data){
+      if(!data || !data.tags){
         return
       }
-      if(!data.tags){
-        return
-      }
+    
       const tags = data.tags.split('$')
       this.setData({
         tags

@@ -9,11 +9,11 @@
       </block>
     </view>
     <view class="price-row">
-      <l-price color="#157658" value-size="28" unit-size="20" autofix 
-      value="{{p.mainPrice(data.price,data.discount_price).price}}"></l-price>
-      <l-price wx:if="{{p.slashedPrice(data.price,data.discount_price).display}}" 
+      <l-price wx:if="{{p.mainPrice(data.price,data.discount_price).display}}"  value="{{p.mainPrice(data.price,data.discount_price).price}}" color="#157658" value-size="28" unit-size="20" autofix 
+      ></l-price>
+      <l-price wx:if="{{p.slashedPrice(data.price,data.discount_price).display}}"  value="{{p.slashedPrice(data.price,data.discount_price).price}}" 
       color="#999" value-size="26" l-class="discount-price" deleted 
-      value="{{p.slashedPrice(data.price,data.discount_price).price}}"></l-price>
+     ></l-price>
     </view>
 
     <text>{{data.subtitle}}</text>
