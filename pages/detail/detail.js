@@ -1,6 +1,7 @@
 import { Spu } from "../../models/spu"
 import { ShoppingWay } from "../../core/enum"
 import { SaleExplain } from "../../models/sale-explain"
+import { getWindowHeightRpx } from "../../utils/system"
 
 // pages/detail/detail.js
 Page({
@@ -20,8 +21,10 @@ Page({
     const pid = options.pid
     const spu = await Spu.getDetail(pid)
     const explain = await SaleExplain.getFixed()
+    const windowHeight = await getWindowHeightRpx()
+    const h = windowHeight-100
     this.setData({
-      spu,explain
+      spu,explain,h
     })
   },
   onAddToCart(event) {
