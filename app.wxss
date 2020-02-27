@@ -1,1 +1,11 @@
 /**app.wxss**/
+page{
+    background-color: #f5f5f5;
+}
+.l-icon-home:before{
+    content: "\e7e5";
+}
+.sleeve{
+    font-family: sleeve !important;
+    color: #157658 !important;
+}
