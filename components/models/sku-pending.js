@@ -10,29 +10,29 @@ class SkuPending {
     init(sku) {
         for (let i = 0; i < sku.specs.length; i++) {
             const cell = new Cell(sku.specs[i])
-            this.insertCell(cell,i)
+            this.insertCell(cell, i)
         }
     }
-    getSkuCode(){
+    getSkuCode() {
         const joiner = new Joiner('#')
-        this.pending.forEach(cell=>{
-           const cellCode =  cell.getCellCode()
-           joiner.join(cellCode)
+        this.pending.forEach(cell => {
+            const cellCode = cell.getCellCode()
+            joiner.join(cellCode)
         })
         return join.getStr()
     }
     isIntact() {
-        if(this.size !== this.pending.length){
+        if (this.size !== this.pending.length) {
             return false
         }
         for (let i = 0; i < this.size; i++) {
-            if(this._isEmptyPart(i)){
+            if (this._isEmptyPart(i)) {
                 return false
             }
         }
         return true
     }
-    _isEmptyPart(index){
+    _isEmptyPart(index) {
         return !this.pending[index]
     }
     insertCell(cell, x) {
@@ -50,6 +50,21 @@ class SkuPending {
             return false
         }
         return cell.id === pendingCell.id
+    }
+    getCurrentSpecValues() {
+        const values = this.pending.map(cell => {
+            return cell ? cell.spec.value : null
+        })
+        return values
+    }
+    getMissingSpecKeyIndex() {
+        const keysIndex = []
+        for (let i = 0; i < this.size; i++) {
+            if (!this.pending[i]) {
+                keysIndex.push(i)
+            }
+        }
+        return keysIndex
     }
 }
 export { SkuPending }

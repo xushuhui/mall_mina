@@ -95,6 +95,15 @@ class Judger {
         return this.fenceGroup.getSku(code)
 
     }
+    getCurrentValues(){
+        return  this.skuPending.getCurrentSpecValues()
+    }
+    getMissingKeys(){
+        const missingKeysIndex = this.skuPending.getMissingSpecKeyIndex()
+        return missingKeysIndex.map(i=>{
+            return this.fenceGroup.fences[i].title
+        })
+    }
 }
 export {
     Judger
