@@ -1,22 +1,24 @@
-.row-container{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    flex-wrap: wrap;
+.row-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
 }
-.title{
-    color: #555;
-    font-size: 24rpx;
-    margin-top: 28rpx;
-    margin-bottom: 28rpx;
 
+.title {
+  color: #555;
+  font-size: 24rpx;
+  margin-top: 28rpx;
+  margin-bottom: 28rpx;
 }
-.cell{
-    margin-bottom: 30rpx;
-    margin-right: 20rpx;
+
+.cell {
+  margin-bottom: 30rpx;
+  margin-right: 20rpx;
 }
-.hr{
-    width: 690rpx;
-    height: 2rpx;
-    background-color: #E9E9E9;
+
+.hr {
+  width: 690rpx;
+  height: 2rpx;
+  background-color: #e9e9e9;
 }

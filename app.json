@@ -1,11 +1,11 @@
 {
   "pages": [
-    "pages/search/search",
+   
     "pages/home/home",
     "pages/cart/cart",
     "pages/category/category",
     "pages/my/my",
-
+"pages/search/search",
     "pages/detail/detail"
     
   ],

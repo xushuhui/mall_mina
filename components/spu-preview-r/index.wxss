@@ -39,10 +39,12 @@
   font-size: 28rpx;
   color: #333;
 }
-.price-row{
-   display: flex;
+
+.price-row {
+  display: flex;
   flex-direction: row;
 }
-.discount-price{
+
+.discount-price {
   margin-left: 20rpx;
 }

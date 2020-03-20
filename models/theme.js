@@ -10,8 +10,8 @@ class Theme {
   async getThemes() {
     const names = `${Theme.locationA},${Theme.locationE},${Theme.locationF},${Theme.locationH}`
     this.themes = await Http.request({
-      //FIXME::url: `theme/by/names`,
-      url: `themes.json`,
+      url: `theme/by/names`,
+   
       data: {
         names
       }
@@ -34,8 +34,8 @@ class Theme {
   }
   static getThemeSpuByName(name) {
     return Http.request({
-      //FIXME::url: `theme/name/${name}/with_spu`
-      url: `theme.json`
+      url: `theme/name/${name}/with_spu`
+    
     })
   }
 }

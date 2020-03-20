@@ -1,6 +1,6 @@
 import {
   Http
-} from "http";
+} from "./http";
 class Paging {
   start
   count

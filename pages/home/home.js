@@ -11,7 +11,7 @@ import {
 import {
   Activity
 } from "../../models/activity"
-import { spuPaging } from "../../models/spu-paging"
+import { SpuPaging } from "../../models/spu-paging"
 Page({
   data: {
     themeA: null,
@@ -30,7 +30,8 @@ Page({
     this.initBottomSpuList()
   },
   async initBottomSpuList() {
-    const paging = spuPaging.getLatestPaging()
+    const paging = SpuPaging.getLatestPaging()
+    this.data.spuPaging = paging
     const data = await paging.getMoreData()
     if (!data) {
       return

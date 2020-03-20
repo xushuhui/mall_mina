@@ -1,16 +1,16 @@
+
 import {
-  Http
-} from "../utils/http";
-import { Paging } from "../utils/paging";
+  Paging
+} from "../utils/paging";
 
 class SpuPaging {
-  static  getLatestPaging() {
+  static getLatestPaging() {
     return new Paging({
-      //FIXME::url:`spu/latest`
-      url: `spu.json`
-    })
-
+      url: `spu/latest`
+    }, 2)
   }
+
+
 }
 export {
   SpuPaging
