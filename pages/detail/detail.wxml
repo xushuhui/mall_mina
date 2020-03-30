@@ -28,6 +28,6 @@
     </view>
 </scroll-view>
 <l-popup show="{{showRealm}}" content-align="bottom">
-    <s-realm bind:specchange="onSpecChange" spu="{{spu}}" order-way={{orderWay}}></s-realm>
+    <s-realm bind:specchange="onSpecChange" spu="{{spu}}" order-way="{{orderWay}}"></s-realm>
 </l-popup>
 <s-tabbar class="tabbar" bind:gotohome="onGotoHome" bind:gotocart="onGotoCart" bind:addtocart="onAddToCart" bind:buy="onBuy"></s-tabbar>
